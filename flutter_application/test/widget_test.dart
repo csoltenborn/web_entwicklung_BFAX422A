@@ -1,30 +1,67 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_application/main.dart';
+import 'package:openapi/api.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:provider/provider.dart';
+
+// mock generation is triggered by executing the follwoing command in the flutter_application dir:
+// dart run build_runner build
+@GenerateNiceMocks([MockSpec<ChatApi>()])
+import 'widget_test.mocks.dart';
+
+
+MockChatApi? _mockApi;
+Provider<ChatApi>? _provider;
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  setUp(() {
+    _mockApi = MockChatApi();
+    _provider = Provider<ChatApi>(
+          create: (_) => _mockApi!,
+          child: const AiApp(),
+        );
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets('End to end', (WidgetTester tester) async {
+    const expectedAnswer = "The AI's answer";
+    when(_mockApi!.chat(any)).thenAnswer((_) async => Message(
+        timestamp: DateTime.now().toUtc(),
+        author: MessageAuthorEnum.ai,
+        message: expectedAnswer));
+
+    await tester.pumpWidget(_provider!);
+
+    expect(find.text('Enter text here'), findsOneWidget);
+
+    await tester.enterText(
+        find.byKey(const Key('UserInputTextField')), "Question to the AI");
+    await tester.tap(find.byIcon(Icons.send));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    sleep(300);
+//    await _sleep(300);
+
+    var text =
+        find.byKey(const Key('AiAnswerText')).evaluate().single.widget as Text;
+    expect(text.data, expectedAnswer);
   });
+}
+
+// for some reason, the sleep approach below blocks indefinitely - 
+// thus this embarassing workaround...
+void sleep(int ms) {
+  int target = DateTime.now().millisecondsSinceEpoch + ms;
+  int dummy = 0;
+  while (DateTime.now().millisecondsSinceEpoch < target) {
+    dummy++;
+  }
+  target = dummy;
+}
+
+Future<void> _sleep(int ms) async {
+  await Future.delayed(Duration(milliseconds: ms));
 }
