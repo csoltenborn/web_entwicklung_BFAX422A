@@ -50,9 +50,38 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          TextField(
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Expanded(child: 
+          TextButton(
+            onPressed: () => {}, 
+            child: const Text("test")
+          ),
+          ),
+          Expanded(child:
+          TextButton(
+            onPressed: () => {}, 
+            child:const Text("Test2")
+          ),
+          ),
+          Expanded(child:
+          TextButton(
+            onPressed: () => {}, 
+            child:const Text("Test2")
+          ),
+          ),
+          Expanded(child:
+          TextButton(
+            onPressed: () => {}, 
+            child:const Text("Test2")
+          ),
+          ),
+          ],
+          ),
+          const SizedBox(height: 100),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Expanded(child: TextField(
             key: const Key('UserInputTextField'),
             maxLines: 5,
             decoration: const InputDecoration(
@@ -62,14 +91,30 @@ class _HomePageState extends State<HomePage> {
               _setUserInput(value);
             },
           ),
+          ),
+          Expanded(child: TextField(
+            key: const Key('UserInputTextField'),
+            maxLines: 5,
+            decoration: const InputDecoration(
+              hintText: 'Enter text here',
+            ),
+            onChanged: (String value) {
+              _setUserInput(value);
+            },
+          ),
+          
+          ),
+          ],
+          ),
           Expanded(
             child: Text(
               _aiAnswer,
               key: const Key('AiAnswerText'),
             ),
           ),
+          
         ],
-      ),
+      ),),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Ask AI',
         onPressed: _askAI,
