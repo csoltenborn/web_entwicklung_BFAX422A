@@ -27,7 +27,7 @@ class AiApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Chat Demo Home Page'),
+      home: const HomePage(title: 'Listen App'),
     );
   }
 }
