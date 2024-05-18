@@ -19,15 +19,25 @@ class _HomePageState extends State<HomePage> {
 
   String _userInput = "";
   String _aiAnswer = "";
-  var answer = TextEditingController();
+  var answer = "";
   ChatApi? _api;
   String currentItem = "C#";
   var items = ["C#", "Java", "Python", "JavaScript"];
-  
+  List<int> errorindex = [];
+  List<String> code = [];
+  List<TextSpan> answerSpans = [];
+  bool isErrorRequest = false;
 
   void _setAiAnswer(Message message) {
     setState(() {
-      answer.text = message.message ?? "<no message received>";
+      errorindex.clear();
+      _aiAnswer = message.message ?? "<no message received>";
+      _aiAnswer = _aiAnswer.trim();
+      code = _aiAnswer.split('\n');
+      if(isErrorRequest){
+      GetLineErrors();
+      } 
+      setSpans();
       //UnderLineErrors();
       //answer.buildTextSpan(context: context, withComposing: )
     });
@@ -48,48 +58,70 @@ class _HomePageState extends State<HomePage> {
 
     _setAiAnswer(response!);
   }
+  void setSpans(){
+    answerSpans = code.asMap().entries.map((entry){
+      int i = entry.key;
+      String l = entry.value;
 
+      return TextSpan(
+        text: "$l\n",
+        style: TextStyle(
+          color: errorindex.contains(i) ? Colors.red : Colors.black,
+        ),
+      );
+
+    }).toList();
+  }
   void AnalyzeCodeError(){
-    _userInput = "Markiere die Fehler im folgenden Programmcode. Gebe mir den Code ohne Erklärung zurück und Schreibe hinter jeden Codeteil der einen Fehler hat mit dem Format 'Code // Error: Errortext.'//'.\n\n$_userInput";
+    isErrorRequest = true;
+    _userInput = "Vergesse die vorherigen Fragen. Markiere nur Semantische Fehler im Code. " 
+    "Gebe mir den generierten Code ohne Erklärung zurück und " 
+    "schreibe hinter jeden Codeteil der einen Semantischen Fehler hat mit dem Format" 
+    "'Code // Error: Errortext.'//'.\n\n$_userInput";
     _askAI();
     //UnderLineErrors();
   }
 
   void ConvertToOtherLanguage()
   {
-    _userInput = "Konvertiere folgenden Code NUR in die Sprache $currentItem: \n\n $_userInput";
+    isErrorRequest = false;
+    _userInput = "Vergesse die vorherigen Fragen. Gebe mir den Code ohne erklärung zurück." 
+    "Konvertiere folgenden Code nur in die Sprache $currentItem: \n\n $_userInput";
     _askAI();
   }
 
-  void UnderLineErrors()
+  void WriteUnitTests()
   {
-    List<String> codePiece = answer.text.split('\n');
-    String newResponse = "";
-    for(String s in codePiece){
-
-      if(s.contains("// Error"))
-      {
-        Text updated = Text(
-        "$s", 
-        style: TextStyle(
-        decoration: TextDecoration.underline,
-        ),
-        );
-         newResponse += updated.data!;
-
-         answer.value = updated as TextEditingValue;
-      }
-      else newResponse += s;
-      
-    }
-    answer.text = newResponse;
-
+    isErrorRequest = false;
+    _userInput = "Setze deinen Wissensstand von der Konversation zurück." 
+    "Schreibe unit tests nur in der Sprache $currentItem zu den nun folgenden Methoden und diese ohne erklärung und zusätze zurück."
+    "\n\n $_userInput";
+    _askAI();
   }
+
+  void GetLineErrors()
+  {
+
+    for(int i = 0; i < code.length;i++){
+      if (code[i].contains("// Error")){
+          errorindex.add(i);
+      }
+    }
+    
+  }
+  void GetSuggestion(){
+    isErrorRequest = false;
+    _userInput = "Gebe mir einen Codevorschlag zur Behebung der Fehler aus der vorherigen Antwort zurück. $answerSpans";
+    _askAI();
+  }
+
+ 
 
   @override
   Widget build(BuildContext context) {
-    _api = Provider.of<ChatApi>(context);
     
+    _api = Provider.of<ChatApi>(context);
+  
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -100,7 +132,9 @@ class _HomePageState extends State<HomePage> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Expanded(child: 
           TextButton(
-            onPressed: AnalyzeCodeError, 
+            onPressed: (){
+                AnalyzeCodeError();
+            } , 
             child: const Text("Programmcode auf Fehler überprüfen")
           ),
           ),
@@ -127,8 +161,8 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(child:
           TextButton(
-            onPressed: () => {}, 
-            child:const Text("Test2")
+            onPressed: WriteUnitTests, 
+            child:const Text("Unit Tests für Methoden schreiben")
           ),
           ),
           Expanded(child:
@@ -142,12 +176,12 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 100),
           IconButton(onPressed: (){
             Alignment.centerRight;
-            Clipboard.setData(ClipboardData(text: answer.text));
+            Clipboard.setData(ClipboardData(text: _aiAnswer));
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Copied")));
             }, 
             icon: const Icon(Icons.copy)
             ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(child: TextField(
             key: const Key('UserInputTextField'),
             maxLines: 20,
@@ -159,36 +193,16 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           ),
-          Expanded(child: TextField(
-            controller: answer,
+          Expanded(child: SingleChildScrollView(
+            //controller: answer,
             key: const Key('AiAnswerText'),
-            maxLines: 20,
-            readOnly: true,
-            decoration: const InputDecoration(
-              hintText: 'Enter text here',
-            ),
-            onChanged: (String value) {
-              _setUserInput(value);
-            },
+            //controller: answer,
+            child: RichText(text: TextSpan(children: answerSpans)),      
+            )
+          )],
           ),
-          
-          ),
-          ],
-          ),
-          Expanded(
-            child: Text(
-              _aiAnswer,
-              key: const Key('AiAnswerText'),
-            ),
-          ),
-          
         ],
       ),),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Ask AI',
-        onPressed: _askAI,
-        child: const Icon(Icons.send),
-      ),
     );
   }
 }
