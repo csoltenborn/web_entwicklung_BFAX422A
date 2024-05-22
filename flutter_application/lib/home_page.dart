@@ -41,8 +41,6 @@ class _HomePageState extends State<HomePage> {
         else isErrorRequest = false;
       } 
       setSpans();
-      //UnderLineErrors();
-      //answer.buildTextSpan(context: context, withComposing: )
     });
   }
 
@@ -75,7 +73,7 @@ class _HomePageState extends State<HomePage> {
 
     }).toList();
   }
-  void AnalyzeCodeError(){
+  void AnalyseCodeError(){
     isErrorRequest = true;
     _userInput = "Vergesse die vorherige Konversation. Markiere nur Semantische Fehler im Code." 
     "Gebe mir den generierten Code ohne Erklärung zurück und " 
@@ -143,7 +141,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(child: 
           TextButton.icon(
             onPressed: (){
-                AnalyzeCodeError();
+                AnalyseCodeError();
             }, 
             label: const Text("Programmcode auf Fehler überprüfen"),
             icon: const Icon(Icons.bug_report),
