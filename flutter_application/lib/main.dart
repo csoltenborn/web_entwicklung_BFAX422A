@@ -23,12 +23,12 @@ class AiApp extends StatelessWidget {
   
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chat Demo',
+      title: 'AI-powered Dev-Tool',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Chat Demo Home Page'),
+      home: const HomePage(title: 'AI-powered Dev-Tool'),
     );
   }
 }

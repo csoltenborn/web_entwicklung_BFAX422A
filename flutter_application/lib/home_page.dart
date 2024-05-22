@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   List<String> code = [];
   List<TextSpan> answerSpans = [];
   bool isErrorRequest = false;
+  bool isDoc = false;
 
   void _setAiAnswer(Message message) {
     setState(() {
@@ -36,6 +37,8 @@ class _HomePageState extends State<HomePage> {
       code = _aiAnswer.split('\n');
       if(isErrorRequest){
       GetLineErrors();
+        if(errorindex.length > 0) isErrorRequest = true;
+        else isErrorRequest = false;
       } 
       setSpans();
       //UnderLineErrors();
@@ -74,7 +77,7 @@ class _HomePageState extends State<HomePage> {
   }
   void AnalyzeCodeError(){
     isErrorRequest = true;
-    _userInput = "Vergesse die vorherigen Fragen. Markiere nur Semantische Fehler im Code. " 
+    _userInput = "Vergesse die vorherigen Fragen. Markiere nur Semantische Fehler im Code." 
     "Gebe mir den generierten Code ohne Erklärung zurück und " 
     "schreibe hinter jeden Codeteil der einen Semantischen Fehler hat mit dem Format" 
     "'Code // Error: Errortext.'//'.\n\n$_userInput";
@@ -114,6 +117,13 @@ class _HomePageState extends State<HomePage> {
     _userInput = "Gebe mir einen Codevorschlag zur Behebung der Fehler aus der vorherigen Antwort zurück. $answerSpans";
     _askAI();
   }
+  
+  void GetDocumentation(){
+    isErrorRequest = false;
+    _userInput = "Vergesse die vorherige Konversation. Schreibe eine kleine Dokumentation zu dem folgenden Code: \n$_userInput";
+    _askAI();
+  }
+
 
  
 
@@ -162,25 +172,39 @@ class _HomePageState extends State<HomePage> {
           Expanded(child:
           TextButton(
             onPressed: WriteUnitTests, 
-            child:const Text("Unit Tests für Methoden schreiben")
+            child:const Text("Unit Tests für Methoden schreiben (Sprache in der Liste auswählen)")
           ),
           ),
           Expanded(child:
           TextButton(
-            onPressed: () => {}, 
-            child:const Text("Test2")
+            onPressed: GetDocumentation, 
+            child:const Text("Code dokumentieren")
           ),
           ),
           ],
           ),
-          const SizedBox(height: 100),
-          IconButton(onPressed: (){
+          const SizedBox(height: 50),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Visibility(
+              visible: isErrorRequest,
+              child: TextButton(
+                child: const Text("Vorschlag zur behebung des Fehlers erhalten"),
+                onPressed: GetSuggestion,
+              ),
+            ),
+
+          ),
+          
+          Align( alignment: Alignment.centerRight,
+          child:IconButton(onPressed: (){
             Alignment.centerRight;
             Clipboard.setData(ClipboardData(text: _aiAnswer));
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Copied")));
             }, 
             icon: const Icon(Icons.copy)
             ),
+          ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(child: TextField(
             key: const Key('UserInputTextField'),
