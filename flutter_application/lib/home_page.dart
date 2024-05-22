@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
   }
   void AnalyzeCodeError(){
     isErrorRequest = true;
-    _userInput = "Vergesse die vorherigen Fragen. Markiere nur Semantische Fehler im Code." 
+    _userInput = "Vergesse die vorherige Konversation. Markiere nur Semantische Fehler im Code." 
     "Gebe mir den generierten Code ohne Erklärung zurück und " 
     "schreibe hinter jeden Codeteil der einen Semantischen Fehler hat mit dem Format" 
     "'Code // Error: Errortext.'//'.\n\n$_userInput";
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
   void ConvertToOtherLanguage()
   {
     isErrorRequest = false;
-    _userInput = "Vergesse die vorherigen Fragen. Gebe mir den Code ohne erklärung zurück." 
+    _userInput = "Vergesse die vorherige Konversation. Gebe mir den Code ohne erklärung zurück." 
     "Konvertiere folgenden Code nur in die Sprache $currentItem: \n\n $_userInput";
     _askAI();
   }
@@ -96,8 +96,8 @@ class _HomePageState extends State<HomePage> {
   void WriteUnitTests()
   {
     isErrorRequest = false;
-    _userInput = "Setze deinen Wissensstand von der Konversation zurück." 
-    "Schreibe unit tests nur in der Sprache $currentItem zu den nun folgenden Methoden und diese ohne erklärung und zusätze zurück."
+    _userInput = "Vergesse die vorherige Konversation." 
+    "Schreibe unit tests nur in der Sprache $currentItem zu den nun folgenden Methoden und gebe diese ohne erklärung und zusätze zurück."
     "\n\n $_userInput";
     _askAI();
   }
@@ -141,20 +141,39 @@ class _HomePageState extends State<HomePage> {
         child: Column(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Expanded(child: 
-          TextButton(
+          TextButton.icon(
             onPressed: (){
                 AnalyzeCodeError();
-            } , 
-            child: const Text("Programmcode auf Fehler überprüfen")
+            }, 
+            label: const Text("Programmcode auf Fehler überprüfen"),
+            icon: const Icon(Icons.bug_report),
+            style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  elevation: 10,                     
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  backgroundColor: Colors.deepPurple,
+                  textStyle: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.normal)),
           ),
           ),
+          const SizedBox(width: 15),
           Expanded(child:
-          TextButton(
+          TextButton.icon(
             onPressed: ConvertToOtherLanguage, 
-            child:const Text("Code in andere Sprache Konvertieren")
+            label:const Text("Code in andere Sprache Konvertieren"),
+            icon: const Icon(Icons.change_circle),
+            style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  elevation: 10,                     
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  backgroundColor: Colors.deepPurple,
+                  textStyle: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.normal)),
           ),
           ),
-          
+          const SizedBox(width: 25),
           DropdownButton(
             value: currentItem,
             items: items.map((String items) { 
@@ -169,16 +188,36 @@ class _HomePageState extends State<HomePage> {
             });
           },
           ),
+          const SizedBox(width: 25),
           Expanded(child:
-          TextButton(
+          TextButton.icon(
             onPressed: WriteUnitTests, 
-            child:const Text("Unit Tests für Methoden schreiben (Sprache in der Liste auswählen)")
+            label:const Text("Unit Tests für Methoden schreiben (Sprache in der Liste auswählen)"),
+            icon: const Icon(Icons.code),
+            style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  elevation: 10,                     
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  backgroundColor: Colors.deepPurple,
+                  textStyle: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.normal)),
           ),
           ),
+          const SizedBox(width: 15),
           Expanded(child:
-          TextButton(
+          TextButton.icon(
             onPressed: GetDocumentation, 
-            child:const Text("Code dokumentieren")
+            label:const Text("Code dokumentieren"),
+            icon: const Icon(Icons.edit_document),
+            style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  elevation: 10,                     
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  backgroundColor: Colors.deepPurple,
+                  textStyle: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.normal)),
           ),
           ),
           ],
@@ -188,9 +227,18 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.bottomCenter,
             child: Visibility(
               visible: isErrorRequest,
-              child: TextButton(
-                child: const Text("Vorschlag zur behebung des Fehlers erhalten"),
+              child: TextButton.icon(
+                label: const Text("Vorschlag zur behebung des Fehlers erhalten"),
                 onPressed: GetSuggestion,
+                icon: const Icon(Icons.fire_extinguisher),
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  elevation: 10,                     
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  backgroundColor: Colors.deepPurple,
+                  textStyle: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.normal)),
               ),
             ),
 
@@ -210,18 +258,27 @@ class _HomePageState extends State<HomePage> {
             key: const Key('UserInputTextField'),
             maxLines: 20,
             decoration: const InputDecoration(
+              border: OutlineInputBorder(),
               hintText: 'Enter text here',
+              filled: true,
+              fillColor: Colors.white70
             ),
             onChanged: (String value) {
               _setUserInput(value);
             },
           ),
           ),
+          const SizedBox(width: 15),
           Expanded(child: SingleChildScrollView(
             //controller: answer,
             key: const Key('AiAnswerText'),
             //controller: answer,
-            child: RichText(text: TextSpan(children: answerSpans)),      
+            child: RichText(
+              text: TextSpan(
+                children: answerSpans,
+                )
+                ),
+            
             )
           )],
           ),
