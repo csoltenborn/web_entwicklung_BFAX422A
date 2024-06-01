@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   String _userInput = "";
   String _aiAnswer = "";
+  String _prompt = "";
   var answer = "";
   ChatApi? _api;
   String currentItem = "C#";
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       _aiAnswer = _aiAnswer.trim();
       code = _aiAnswer.split('\n');
       if(isErrorRequest){
-      GetLineErrors();
+        GetLineErrors();
         if(errorindex.length > 0) isErrorRequest = true;
         else isErrorRequest = false;
       } 
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     var message = Message(
       timestamp: DateTime.now().toUtc(),
       author: MessageAuthorEnum.user,
-      message: _userInput,
+      message: _prompt,
     );
 
     var response = await _api!.chat(message);
@@ -75,27 +76,26 @@ class _HomePageState extends State<HomePage> {
   }
   void AnalyseCodeError(){
     isErrorRequest = true;
-    _userInput = "Vergesse die vorherige Konversation. Markiere nur Semantische Fehler im Code." 
+    _prompt = "Vergesse die vorherige Konversation. Markiere nur Semantische Fehler im Code." 
     "Gebe mir den generierten Code ohne Erklärung zurück und " 
     "schreibe hinter jeden Codeteil der einen Semantischen Fehler hat mit dem Format" 
     "'Code // Error: Errortext.'//'.\n\n$_userInput";
     _askAI();
-    //UnderLineErrors();
   }
 
   void ConvertToOtherLanguage()
   {
     isErrorRequest = false;
-    _userInput = "Vergesse die vorherige Konversation. Gebe mir den Code ohne erklärung zurück." 
-    "Konvertiere folgenden Code nur in die Sprache $currentItem: \n\n $_userInput";
+    _prompt = "Vergesse die vorherige Konversation. Gebe mir den Code ohne erklärung zurück." 
+    "Konvertiere folgenden Code nur in die Programmiersprache $currentItem: \n\n $_userInput";
     _askAI();
   }
 
   void WriteUnitTests()
   {
     isErrorRequest = false;
-    _userInput = "Vergesse die vorherige Konversation." 
-    "Schreibe unit tests nur in der Sprache $currentItem zu den nun folgenden Methoden und gebe diese ohne erklärung und zusätze zurück."
+    _prompt = "Vergesse die vorherige Konversation." 
+    "Schreibe unit tests nur in der Programmiersprache $currentItem zu den nun folgenden Methoden und gebe diese ohne erklärung und zusätze zurück."
     "\n\n $_userInput";
     _askAI();
   }
@@ -112,13 +112,13 @@ class _HomePageState extends State<HomePage> {
   }
   void GetSuggestion(){
     isErrorRequest = false;
-    _userInput = "Gebe mir einen Codevorschlag zur Behebung der Fehler aus der vorherigen Antwort zurück. $answerSpans";
+    _prompt = "Gebe mir einen Codevorschlag zur Behebung der Fehler aus der vorherigen Antwort zurück. $answerSpans";
     _askAI();
   }
   
   void GetDocumentation(){
     isErrorRequest = false;
-    _userInput = "Vergesse die vorherige Konversation. Schreibe eine kleine Dokumentation zu dem folgenden Code: \n$_userInput";
+    _prompt = "Vergesse die vorherige Konversation. Schreibe eine kleine Dokumentation zu dem folgenden Code: \n$_userInput";
     _askAI();
   }
 
@@ -268,9 +268,7 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(width: 15),
           Expanded(child: SingleChildScrollView(
-            //controller: answer,
             key: const Key('AiAnswerText'),
-            //controller: answer,
             child: RichText(
               text: TextSpan(
                 children: answerSpans,
