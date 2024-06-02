@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -13,6 +14,7 @@ import 'home_page.dart';
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: false);
   var apiClient = ApiClient(basePath: 'http://127.0.0.1:8080');
   var api = ChatApi(apiClient);
   runApp(
