@@ -1,11 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'home_page.dart';
 
 
 
-void main() {
+
+  main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   var apiClient = ApiClient(basePath: 'http://127.0.0.1:8080');
   var api = ChatApi(apiClient);
   runApp(
