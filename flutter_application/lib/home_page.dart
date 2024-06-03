@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application/models/todo.dart';
 import 'package:flutter_application/services/database_services.dart';
+import 'package:intl/intl.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
-
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -81,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16), 
 
           FloatingActionButton(
-            onPressed: sort,
+            onPressed: sortList,
             backgroundColor: Theme.of(context).colorScheme.primary,
             child: const Icon(
               Icons.sort,
@@ -171,7 +167,7 @@ Widget _messagesListView(){
                             ),
                             onLongPress: () {
                               _databaseServices.deleteTodo(todoId);
-                              sort();
+                              sortList();
                             },
                           ),
                         );
@@ -234,18 +230,16 @@ Widget _messagesListView(){
               textColor: Colors.white,
               child: const Text("Add"),
               onPressed: () {
-                 var uuid = const Uuid();
                 Todo todo = Todo(
                   task: _textEditingController.text,
                   isDone: false,
                   createdOn: Timestamp.now(),
                   updatedOn: Timestamp.now(), 
-                  id: uuid.v4(),
                 );
                 _databaseServices.addTodo(todo);
                 Navigator.pop(context);
                 _textEditingController.clear();
-                sort();
+                sortList();
               },
             )
           ],
@@ -254,7 +248,7 @@ Widget _messagesListView(){
     );
   }
  
-  void sort(){
+  void sortList(){
     allTodoTexts.clear();
     allTodoTexts = allTodoTextsnot;
     if(allTodoTexts.isNotEmpty){
