@@ -1,8 +1,10 @@
 # AI-powered Dev-Tool
   Name: Finn Eric Ehrlich
-  Studiengruppe: BFAX422A
+  
+  Studiengang: BFAX422A
 
   Dozent: Christian Soltenborn
+  
   Modul: Projekt Web Entwicklung
 
 ## Einleitung
