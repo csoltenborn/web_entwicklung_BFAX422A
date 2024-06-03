@@ -232,7 +232,6 @@ Widget _messagesListView(){
               onPressed: () {
                 Todo todo = Todo(
                   task: _textEditingController.text,
-                  isDone: false,
                   createdOn: Timestamp.now(),
                   updatedOn: Timestamp.now(), 
                 );
