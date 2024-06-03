@@ -36,3 +36,6 @@
 - Verfügbarkeit: Die Anwendung muss die Möglichkeit bieten, immer erreichbar zu sein.
 - Nutzerfreundlichkeit: Die Anwendung benötigt ein gut strukturiertes und intuitives Design.
    
+## Konzept
+
+![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
