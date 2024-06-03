@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: (){
                 AnalyseCodeError();
             }, 
-            label: const Text("Programmcode auf Fehler überprüfen"),
+            label: const Text("Code auf Fehler überprüfen"),
             icon: const Icon(Icons.bug_report),
             style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(child:
           TextButton.icon(
             onPressed: ConvertToOtherLanguage, 
-            label:const Text("Code in andere Sprache Konvertieren"),
+            label:const Text("Code in eine andere Sprache Konvertieren"),
             icon: const Icon(Icons.change_circle),
             style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(child:
           TextButton.icon(
             onPressed: WriteUnitTests, 
-            label:const Text("Unit Tests für Methoden schreiben (Sprache in der Liste auswählen)"),
+            label:const Text("Unit Tests generieren(Sprache in der Liste auswählen)"),
             icon: const Icon(Icons.code),
             style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
