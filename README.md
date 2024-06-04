@@ -8,3 +8,8 @@ Die daten sollen in einer Datenbank gespeichert werden.
 
 ## Architekturdiagramm
 ![image](https://github.com/TimonKy/web_entwicklung_BFAX422A/assets/126243654/43953235-8019-4105-8e73-5e8abdb6f6bc)
+
+## Klassendiagramm
+![Klassendiagramm](https://github.com/TimonKy/web_entwicklung_BFAX422A/assets/126243654/8d12616a-77ce-41b5-a76e-263fe5038123)
+
+
