@@ -38,8 +38,7 @@ class _HomePageState extends State<HomePage> {
       code = _aiAnswer.split('\n');
       if(isErrorRequest){
         GetLineErrors();
-        if(errorindex.length > 0) isErrorRequest = true;
-        else isErrorRequest = false;
+        if(errorindex.length <= 0) isErrorRequest = false;
       } 
       setSpans();
     });
@@ -112,7 +111,7 @@ class _HomePageState extends State<HomePage> {
   }
   void GetSuggestion(){
     isErrorRequest = false;
-    _prompt = "Gebe mir einen Codevorschlag zur Behebung der Fehler aus der vorherigen Antwort zurück. $answerSpans";
+    _prompt = "Gebe mir einen Codevorschlag zur Behebung der Fehler aus der vorherigen Antwort zurück. Gebe mir nur den Codevorschlag zurück. $answerSpans";
     _askAI();
   }
   
@@ -220,7 +219,7 @@ class _HomePageState extends State<HomePage> {
           ),
           ],
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 25),
           Align(
             alignment: Alignment.bottomCenter,
             child: Visibility(
@@ -269,11 +268,11 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(width: 15),
           Expanded(child: SingleChildScrollView(
             key: const Key('AiAnswerText'),
-            child: RichText(
+            child: Expanded( child: RichText(
               text: TextSpan(
                 children: answerSpans,
                 )
-                ),
+                ),),
             
             )
           )],
