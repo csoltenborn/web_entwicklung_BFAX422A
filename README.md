@@ -24,6 +24,5 @@ Die daten sollen in einer Datenbank gespeichert werden.
 
 ### Homepage
 
-## Zusammen Fassung
-
+## Zusammenfassung
 Diese Todo-Listen-App kombiniert die Leistungsfähigkeit von Flutter für die Benutzeroberfläche mit Firebase für das Backend und OpenAPI für die KI-Integration. Diese Struktur ermöglicht es Benutzern, ihre Aufgaben effektiv zu verwalten und mit Hilfe der KI sinnvoll zu priorisieren. Die detaillierte Implementierung zeigt, wie die verschiedenen Komponenten miteinander interagieren, um eine nahtlose Benutzererfahrung zu bieten.
