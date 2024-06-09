@@ -9,12 +9,16 @@
 
 ## Einleitung
    In diesem Projekt wurde eine Client/Server Web-Anwendung erstellt, die als Unterstützung für Entwickler dient. Die Anwendung stellt Funkionen bereit, wie beispielweise Fehlerüberprüfungen in Code.
-   Das Besondere dabei ist, das diese Funktionen KI gestützt sind. Die verwendete KI ist hierbei GPT3-Turbo.
+   Das Besondere dabei ist, das diese Funktionen KI gestützt sind. Die verwendete KI ist hierbei GPT3.5-Turbo.
 
    Diese App stellt eine simple Alternative zu bestehenden Systemen dar. Der Kernvorteil besteht darin, die Produktivität von Entwicklern zu steigern.
    Die Applikation stellt keinen normalen KI-Chat bereit sondern festverankerte, KI gestützte Funktionen. Dadurch sparen Entwickler Zeit, eigene Fragen/Anfragen an die KI zu stellen.
 
-
+## Technologien
+   Framework: Flutter
+   Programmiersprache: Dart
+   Schnittstellen: OpenAPI/OpenAI
+  
 ## Anforderungen
 
 ### Funktionale Anforderungen:
@@ -30,19 +34,29 @@
 - Über die Schaltfläche "Code dokumentieren" soll der Code von der KI dokumentiert werden.
 
 ### Nicht funktionale Anforderungen:
-- Betriebssystem: Alle mit Browserunterstützung 
+- Platform: Web
 - Robustheit: Die Anwendung darf nicht in einen Zustand gelangen, in dem sie nicht reagiert oder die Verbindung verliert.
 - Performance: Die AI muss schnell Antworten können. Die Anwendung muss diese Antworten schnell anzeigen können
 - Verfügbarkeit: Die Anwendung muss die Möglichkeit bieten, immer erreichbar zu sein.
 - Nutzerfreundlichkeit: Die Anwendung benötigt ein gut strukturiertes und intuitives Design.
    
 ## Konzept
-  Bei dem anfänglichen ausarbeiten der Idee, wurde ein erstes UI-Konzept erstellt (siehe Abbildung 1). Das Design der Oberfläche ist simpel und intuitiv.
-  Durch die Abtrennung von Funktionen sowie Ein- und Ausgabe wird eine Übersichtlichkeit geschaffen. Die Auswahlliste liegt zwischen den beiden Funktionen, für die sie relevant ist.
+  Bei dem anfänglichen Ausarbeiten der Idee, wurde ein erstes UI-Konzept erstellt (siehe Abbildung 1). Das Design der Oberfläche ist simpel, intuitiv und enthält
+  alle bis dahin geplanten Features.Durch die Abtrennung von Funktionen und Ein-/Ausgabe wird eine Übersichtlichkeit geschaffen. 
+  Die Auswahlliste der Programmiersprache liegt zwischen den beiden Funktionen, für die sie relevant ist.
   
   Abbildung 1: UI-Konzept
   ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/2ff00b0a-482f-44f5-b176-5a36c26b3ba7)
 
+# Umsetzung
+
+## UI Implementierung
+   Während der Entwicklung wurden zwei weitere Ideen für Funktionen in das Projekt mit aufgenommen: Eine Schaltfläche für das Kopieren des generierten Codes und eine für Fehlerbehebungsvorschläge.
+   Demnach sieht das Finale UI etwas anders aus, beinhaltet im Kern aber die gleiche Struktur.
+
+   Zunächst wurden die im Projekt schon bestehenden Elemente "UserInputField" und "AiAnswerText" angepasst und vergrößert. Das Textelement "AiAnswertext"
+   wurde zu einem "RichText" welches "Textspans" als Text enthält. 
+   
 
 ## Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
