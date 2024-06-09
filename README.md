@@ -37,7 +37,12 @@
 - Nutzerfreundlichkeit: Die Anwendung benötigt ein gut strukturiertes und intuitives Design.
    
 ## Konzept
+  Bei dem anfänglichen ausarbeiten der Idee, wurde ein erstes UI-Konzept erstellt (siehe Abbildung 1). Das Design der Oberfläche ist simpel und intuitiv.
+  Durch die Abtrennung von Funktionen sowie Ein- und Ausgabe wird eine Übersichtlichkeit geschaffen. Die Auswahlliste liegt zwischen den beiden Funktionen, für die sie relevant ist.
+  
+  Abbildung 1: UI-Konzept
   ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/2ff00b0a-482f-44f5-b176-5a36c26b3ba7)
+
 
 ## Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
