@@ -73,13 +73,13 @@
    Um den Platz auszufüllen, wurden alle Elemente in ein "Expanded" Element eingebettet. Des weiteren haben alle Schaltflächen einen Lila Hintergrund erhalten.
    
 ## Logik
-   ### Client
+### Client
 
-   ### Server
-       Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem übergeordneten Projekt genommen.
-       Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
-       Von dem Client wird der erstellte Prompt über die ChatAPI an den Server weitergeleitet. 
-       Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client
+### Server
+  Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem übergeordneten Projekt genommen.
+  Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
+  Von dem Client wird der erstellte Prompt über die ChatAPI an den Server weitergeleitet. 
+  Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client
 
 ## Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
