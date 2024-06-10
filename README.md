@@ -52,10 +52,19 @@
 
 ## UI Implementierung
    Während der Entwicklung wurden zwei weitere Ideen für Funktionen in das Projekt mit aufgenommen: Eine Schaltfläche für das Kopieren des generierten Codes und eine für Fehlerbehebungsvorschläge.
-   Demnach sieht das Finale UI etwas anders aus, beinhaltet im Kern aber die gleiche Struktur.
+   Demnach sieht das Finale UI (siehe Abbildung 2) etwas anders aus, beinhaltet im Kern aber die gleiche Struktur.
+
+   Abbildung 2: Finales UI
+   ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/9c4fafca-b8e8-4f8f-bcfe-f3680b3d3733)
 
    Zunächst wurden die im Projekt schon bestehenden Elemente "UserInputField" und "AiAnswerText" angepasst und vergrößert. Das Textelement "AiAnswertext"
-   wurde zu einem "RichText" welches "Textspans" als Text enthält. 
+   wurde zu einem "RichText" welches "Textspans" als Text enthält. Zudem wurde die Schaltfläche vom Typ "Floatingbutton" entfernt, welche die Eingabe des 
+   Die gesamten Komponenten wurden in einem "Column" Element eingebettet, welches zwei "Row" Elemente beinhaltet.
+   In der ersten Reihe der Spalten wurden vier Schaltflächen vom Typ "TextButton" erstellt, welche alle ein passendes Icon enthalten.
+   Die Schaltflächen sind "Code auf Fehler überprüfen", "Code in eine andere Sprache konvertieren", "Unit Tests generieren" und "Code dokumentieren".
+   Zwischen der zweiten und dritten Schaltfläche wurde eine Auswahlliste vom Typ "Dropdownbutton". 
+
+## Logik
    
 
 ## Sequenz Diagramm
