@@ -58,12 +58,19 @@
    ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/9c4fafca-b8e8-4f8f-bcfe-f3680b3d3733)
 
    Zunächst wurden die im Projekt schon bestehenden Elemente "UserInputField" und "AiAnswerText" angepasst und vergrößert. Das Textelement "AiAnswertext"
-   wurde zu einem "RichText" welches "Textspans" als Text enthält. Zudem wurde die Schaltfläche vom Typ "Floatingbutton" entfernt, welche die Eingabe des 
+   wurde zu einer "SingeChildScrollsView" geändert, welche ein "RichText" enthält. Dieses "RichText" enthält Textspans.
+   Zudem wurde die Schaltfläche vom Typ "Floatingbutton" entfernt, welche die Eingabe des Benutzers an den Server weitergeleitet hat.
    Die gesamten Komponenten wurden in einem "Column" Element eingebettet, welches zwei "Row" Elemente beinhaltet.
    In der ersten Reihe der Spalten wurden vier Schaltflächen vom Typ "TextButton" erstellt, welche alle ein passendes Icon enthalten.
    Die Schaltflächen sind "Code auf Fehler überprüfen", "Code in eine andere Sprache konvertieren", "Unit Tests generieren" und "Code dokumentieren".
-   Zwischen der zweiten und dritten Schaltfläche wurde eine Auswahlliste vom Typ "Dropdownbutton". 
-
+   Zwischen der zweiten und dritten Schaltfläche wurde eine Auswahlliste vom Typ "Dropdownbutton", die der Auswahl von Programmiersprachen dient.
+   Es wurden vier Programmiersprachen manuell der Liste hinzugefügt: C#, Java, Python und Javascript.
+   Zudem wurde eine Kopierschaltfläche oben rechts neben dem "AiAnswerText" mit einem Kopiericon hinzugefügt.
+   Zudem wurde eine weitere Schaltfläche "Vorschlag zur Behebung des Fehlers" vom Typ "TextButton" hinzugefügt, welche auch ein Icon enthält. 
+   Das Besondere bei dieser Schaltfläche ist es, das sie in ein "Visibility" Element eingebettet wurde. 
+   Das bedeutet das die Schaltfläche basierend auf einem Booleanwert zu sehen ist.
+   
+   Um den Platz auszufüllen, wurden alle Elemente in ein "Expanded" Element eingebettet. Des weiteren haben alle Schaltflächen einen Lila Hintergrund erhalten.
 ## Logik
    
 
