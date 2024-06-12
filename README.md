@@ -51,7 +51,7 @@
 
 ## UI Implementierung
    Während der Entwicklung wurden zwei weitere Ideen für Funktionen in das Projekt mit aufgenommen: Eine Schaltfläche für das Kopieren des generierten Codes und eine für Fehlerbehebungsvorschläge.
-   Demnach sieht das Finale UI (siehe Abbildung 2) etwas anders aus, beinhaltet im Kern aber die gleiche Struktur.
+   Demnach sieht das Finale UI (siehe Abbildung 2) etwas anders aus, beinhaltet im Kern aber die gleiche Struktur. Alle UI-Elemente befinden sich in der "home_page.dart" Datei.
 
    Abbildung 2: Finales UI
    ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/9c4fafca-b8e8-4f8f-bcfe-f3680b3d3733)
@@ -73,7 +73,13 @@
    
 ## Logik
 ### Client
-    
+  Um mit dem Server zu kommunizieren wurden alle Komponenten des geforkten Projekts beibehalten. Die einzige Änderung war der geänderte Messagetext in der Methode "_askAI".
+  Dort wurde nun statt die Benutzereingabe eine Variable gesetzt, die den konstruierten Prompt enthält. Dieser Prompt wird je nach ausgeführter Funktion dynamisch gesetzt.
+
+  Für die Funktion "Code auf Fehler überprüfen" wurde die Methode "AnalyseCodeError" geschrieben (siehe Abbildung 3), welche über das onPressed Event der Schaltfläche ausgeführt wird.
+  ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/f1f22669-adb2-4e81-9373-0c550c4bb6db)
+  
+  
 ### Server
   Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
   Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
@@ -81,4 +87,5 @@
   Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client.
 
 ## Sequenz Diagramm
+Abbildung #Zahl#: Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
