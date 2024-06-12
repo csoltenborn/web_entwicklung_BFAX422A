@@ -8,8 +8,7 @@
   Modul: Projekt Web Entwicklung
 
 ## Einleitung
-   In diesem Projekt wurde eine Client/Server Web-Anwendung erstellt, die als Unterstützung für Entwickler dient. Die Anwendung stellt Funkionen bereit, wie beispielweise Fehlerüberprüfungen in Code.
-   Das Besondere dabei ist, das diese Funktionen KI gestützt sind. Die verwendete KI ist hierbei GPT3.5-Turbo.
+   In diesem Projekt wurde eine Client/Server Web-Anwendung auf Basis des Projekts von Christian Soltenborn erstellt, die als Unterstützung für Entwickler dient. Die Anwendung stellt Funkionen bereit, wie     beispielweise Fehlerüberprüfungen in Code. Das Besondere dabei ist, das diese Funktionen KI gestützt sind. Die verwendete KI ist hierbei GPT3.5-Turbo.
 
    Diese App stellt eine simple Alternative zu bestehenden Systemen dar. Der Kernvorteil besteht darin, die Produktivität von Entwicklern zu steigern.
    Die Applikation stellt keinen normalen KI-Chat bereit sondern festverankerte, KI gestützte Funktionen. Dadurch sparen Entwickler Zeit, eigene Fragen/Anfragen an die KI zu stellen.
@@ -17,7 +16,7 @@
 ## Technologien
    Framework: Flutter
    Programmiersprache: Dart
-   Schnittstellen: OpenAPI/OpenAI
+   Schnittstellen: OpenAPI und OpenAI
   
 ## Anforderungen
 
@@ -66,7 +65,7 @@
    Zwischen der zweiten und dritten Schaltfläche wurde eine Auswahlliste vom Typ "Dropdownbutton", die der Auswahl von Programmiersprachen dient.
    Es wurden vier Programmiersprachen manuell der Liste hinzugefügt: C#, Java, Python und Javascript.
    Zudem wurde eine Kopierschaltfläche oben rechts neben dem "AiAnswerText" mit einem Kopiericon hinzugefügt.
-   Zudem wurde eine weitere Schaltfläche "Vorschlag zur Behebung des Fehlers" vom Typ "TextButton" hinzugefügt, welche auch ein Icon enthält. 
+   Des weiteren wurde eine weitere Schaltfläche "Vorschlag zur Behebung des Fehlers" vom Typ "TextButton" hinzugefügt, welche auch ein Icon enthält. 
    Das Besondere bei dieser Schaltfläche ist es, das sie in ein "Visibility" Element eingebettet wurde. 
    Das bedeutet das die Schaltfläche basierend auf einem Booleanwert zu sehen ist. Diese Schaltfläche wird unter der Auswahlliste angezeigt.
    
@@ -74,12 +73,12 @@
    
 ## Logik
 ### Client
-
+    
 ### Server
-  Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem übergeordneten Projekt genommen.
+  Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
   Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
   Von dem Client wird der erstellte Prompt über die ChatAPI an den Server weitergeleitet. 
-  Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client
+  Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client.
 
 ## Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
