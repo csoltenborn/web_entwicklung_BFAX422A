@@ -79,8 +79,6 @@
   Um mit dem Server zu kommunizieren wurden alle Komponenten des geforkten Projekts beibehalten. Die einzige Änderung war der geänderte Messagetext in der Methode "_askAI".
   Dort wurde nun statt die Benutzereingabe eine Variable gesetzt, die den konstruierten Prompt enthält. Dieser Prompt wird je nach ausgeführter Funktion dynamisch erstellt.
 
-  Abbildung 3: Methode "AnalyseCodeError"
-  ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/f1f22669-adb2-4e81-9373-0c550c4bb6db)
   Für die Funktion "Code auf Fehler überprüfen" wurde die Methode "AnalyseCodeError" geschrieben (siehe Abbildung 3), welche über das onPressed Event der Schaltfläche ausgeführt wird.
   Zunächst wurde die Variable "isErrorRequest", welche einen Booleanwert enthält, auf den Wert "true" gesetzt. Danach wurde die Variable "_prompt" mit einem speziell für die Fehlerüberprüfung erstellter 
   Text gefüllt. Dieser enthält sowohl die Anweisung als auch den eingegebenen Programmcode des Benutzers. Nach dem erstellen des Prompts, wird die Methode "_askAI" ausgeführt. 
@@ -118,7 +116,7 @@
   Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client.
 
 ## Sequenz Diagramm
-Abbildung #Zahl#: Sequenz Diagramm
+Abbildung 3: Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
 
 ## Probleme/Lessons learned
