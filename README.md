@@ -84,7 +84,7 @@
   Text gefüllt. Dieser enthält sowohl die Anweisung als auch den eingegebenen Programmcode des Benutzers. Nach dem erstellen des Prompts, wird die Methode "_askAI" ausgeführt. 
   In dieser wird die Anfrage an den Server weitergeleitet und die Antwort in die Variable "response" gespeichert. Danach wird die Methode "_setAiAnswer" ausgeführt.
   Diese war in dem Projekt schon vorhanden und wurde den Anforderungen entsprechend bearbeitet.
-  In dieser Methode wird in einem "setState" zunächst eine Liste "errorindex" geleert. Diese Liste beinhaltet die Indizies der Codezeilen, die einen Fehler enthalten.
+  In dieser Methode wird in einem "setState" zunächst die Liste "errorindex" geleert. Diese Liste beinhaltet die Indizies der Codezeilen, die einen Fehler enthalten.
   Die Antwort der KI wurde zunächst so bearbeitet, das sie keine Whitespaces mehr enthält. Danach wurden die Zeilen der Antwort einzeln aufgeteilt und in die Liste "code" geschrieben.
   Diese Liste besteht aus Stringwerten. Des weiteren wurde überprüft, ob es sich bei der aktuellen Anfrage um die Fehlerüberprüfung handelt. 
   Wenn dies zutrifft, wird die Methode "GetLineErrors" ausgeführt. In dieser Methode wurde mittels einer For-Schleife jede Codezeile darauf überprüft, ob diese das Format "// Error" enthält.
@@ -94,9 +94,16 @@
   Für jede Zeile wird ein Element vom Typ "TextSpan" zurückgegeben, in dem durch eine Überprüfung die Farbe des Textes festgelegt wird.
   Wenn der Zeilenindex mit einem aus der Liste "errorindex" übereinstimmt, wird der Text Rot gefärbt, ansonsten Schwarz. Diese "TextSpans" werden in der Liste "answerSpans" von "TextSpans" gespeichert.
   Die Liste "answerSpans" ist der Wert des "AiAnswerText" Elements.
+
+  In allen anderen aufgerufenen Methoden der Funktionen wird die Variable "isErrorRequest" auf den Wert "false" gesetzt. Des weiteren wird in den anderen Methoden auch die "_askAI" und "setAiAnswer" 
+  Methode ausgeführt. Bei der "setAiAnswer Methode wird entsprechend die Fehlerüberprüfungsfunktion nicht ausgeführt, die Antwort aber auch über die "setSpans" Methode gesetzt.
   
-  Bei gefundenen Fehlerzeilen wird die Schaltfläche "Vorschlag zur Behebung des Fehler erhalten" angezeigt. Diese ist in einem "Visibility" Element eingebettet, welches über die Variable "isErrorRequest"    zu sehen oder nicht zu sehen ist.
-  
+  Bei gefundenen Fehlerzeilen wird die Schaltfläche "Vorschlag zur Behebung des Fehler erhalten" angezeigt. Diese ist in einem "Visibility" Element eingebettet, welches über die Variable "isErrorRequest"    zu sehen oder nicht zu sehen ist. In der über das "onPressed" Event aufgerufenen Methode "GetSuggestion" wurde ein Prompt für die Fehlerbehebung erstellt. Dieser enthält sowohl einen passenden Text für 
+  die Anfrage, als auch den von der KI überprüften Code aus der vorherigen Antwort.
+
+
+  Die Methoden "Code in eine andere Sprache konvertieren" und "Unit Tests generieren" enthalten jeweils einen Prompt. Dieser enthält sowohl jeweils einen passenden Text, als auch die Programmiersprache 
+  aus der Auswahlliste. 
 ### Server
   Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
   Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
