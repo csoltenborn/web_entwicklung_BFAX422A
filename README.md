@@ -103,12 +103,16 @@
   Bei gefundenen Fehlerzeilen wird die Schaltfläche "Vorschlag zur Behebung des Fehler erhalten" angezeigt. Diese ist in einem "Visibility" Element eingebettet, welches über die Variable "isErrorRequest"    zu sehen oder nicht zu sehen ist. In der über das "onPressed" Event aufgerufenen Methode "GetSuggestion" wurde ein Prompt für die Fehlerbehebung erstellt. Dieser enthält sowohl einen passenden Text für 
   die Anfrage, als auch den von der KI überprüften Code aus der vorherigen Antwort.
 
-
+  In der Auswahlliste wird das aktuelle Element durch einen Klick auf eines der Elemente gesetzt. Um das ausgewählte Element zu speichern, wurde eine Variable vom Typ "String" erstellt, welche das aktuell 
+  ausgewählte Element beinhaltet.
+  
   Die Methoden "Code in eine andere Sprache konvertieren" und "Unit Tests generieren" enthalten jeweils einen Prompt. Dieser enthält sowohl einen passenden Text, als auch die Programmiersprache 
   aus der Auswahlliste. 
+
+  Das Kopieren über die Kopierschaltfläche erfolgt über "Clipboard.SetData", welches den Inhalt des "AiAnswerText" Elements in die Zwischenablage des Systems kopiert.
   
 ### Server
-  Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
+  Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt übernommen.
   Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
   Von dem Client wird der erstellte Prompt über die ChatAPI an den Server weitergeleitet. 
   Dieser verarbeitet diese Anfrage mit dem Chat-Model 3.5-Turbo und sendet die Antwort der AI über die API zurück an den Client.
@@ -116,3 +120,19 @@
 ## Sequenz Diagramm
 Abbildung #Zahl#: Sequenz Diagramm
 ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/42e1b714-a4cd-47a5-9944-07f1a97fc9eb)
+
+## Probleme/Lessons learned
+  Durch wenig Erfahrung in der Entwicklung mit Flutter, hat der Entwicklungprozess an manchen Stellen kurz gestockt. 
+  Beispielweise war zunächst geplant über ein PopUp-Fenster die Funktion "Vorschlag zur Behebung des Fehlers erhalten" einzubauen.
+  Nach längerem Versuchen hat es nicht wie gewünscht funktioniert. Das Problem war, das die Anwendung nicht weiter bedient werden konnte solange das PopUp-Fenster nicht geschlossen wurde.
+  Zudem war der Hintergrund in einer Farbe, welche das restliche UI so überdeckte, das man nur schwer etwas erkennen konnte.
+
+  Zudem gab es zwischenzeitlich Probleme bei dem Prompt-Engineering. Hierbei wurde der vorherige Prompt an den aktuellen angehangen, welches zu nicht gewünschten Antworten der KI führte.
+  Die Lösung dafür lag darin eine weitere Variable anzulegen, anstatt dieselbe zu überschreiben.
+
+  Des weiteren gibt es einen UI-Fehler, bei dem das UI Overflowed, da nicht genug Platz vorhanden ist. Dieser Fehler konnte in der Zeit leider nicht mehr behoben werden.
+  
+## Fazit
+   Am schluss lässt sich sagen, das dieses Projekt gut verlief. Alle vom Anfang geplanten Funktionen, sowie die während der Entwicklung hinzugekommenen Funktionen wurden erfolgreich implementiert.
+   Für die Zukunft könnte ein verbessertes UI mit Optionen hinzugefügt werden. Zudem können die Spezifischen Prompts ausgebaut und weitere Funktionen der Anwendung hinzugefügt werden.
+   Des weiteren kann der UI Fehler in Zukunft behoben werden.
