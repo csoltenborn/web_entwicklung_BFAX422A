@@ -15,7 +15,9 @@
 
 ## Technologien
    Framework: Flutter
+   
    Programmiersprache: Dart
+   
    Schnittstellen: OpenAPI und OpenAI
   
 ## Anforderungen
@@ -102,8 +104,9 @@
   die Anfrage, als auch den von der KI überprüften Code aus der vorherigen Antwort.
 
 
-  Die Methoden "Code in eine andere Sprache konvertieren" und "Unit Tests generieren" enthalten jeweils einen Prompt. Dieser enthält sowohl jeweils einen passenden Text, als auch die Programmiersprache 
+  Die Methoden "Code in eine andere Sprache konvertieren" und "Unit Tests generieren" enthalten jeweils einen Prompt. Dieser enthält sowohl einen passenden Text, als auch die Programmiersprache 
   aus der Auswahlliste. 
+  
 ### Server
   Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
   Dies hat den Grund, das der zugrundeliegende Server für die Entwicklung die schon benötigten Funktionalitäten bietet.
