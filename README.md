@@ -69,8 +69,8 @@
    Das Besondere bei dieser Schaltfläche ist es, das sie in ein "Visibility" Element eingebettet wurde. 
    Das bedeutet das die Schaltfläche basierend auf einem Booleanwert zu sehen ist. Diese Schaltfläche wird unter der Auswahlliste angezeigt.
    
-   Um den leeren Platz auszufüllen und Symmetrie zu schaffen, wurden alle Elemente außer die Auswahlliste in ein "Expanded" Element eingebettet. Des weiteren haben alle Schaltflächen einen Lila Hintergrund 
-   erhalten. Für die Übersichtlichkeit wurden Abstände mithilfe von "SizedBox" zwischen Elemente eingebaut.
+   Um den leeren Platz auszufüllen und Symmetrie zu schaffen, wurden alle Elemente außer die Auswahlliste in ein "Expanded" Element eingebettet. Des weiteren haben alle Schaltflächen einen Lila 
+   Hintergrund erhalten. Für die Übersichtlichkeit wurden Abstände mithilfe von "SizedBox" zwischen Elemente eingebaut.
    
 ## Logik
 ### Client
@@ -94,6 +94,8 @@
   Für jede Zeile wird ein Element vom Typ "TextSpan" zurückgegeben, in dem durch eine Überprüfung die Farbe des Textes festgelegt wird.
   Wenn der Zeilenindex mit einem aus der Liste "errorindex" übereinstimmt, wird der Text Rot gefärbt, ansonsten Schwarz. Diese "TextSpans" werden in der Liste "answerSpans" von "TextSpans" gespeichert.
   Die Liste "answerSpans" ist der Wert des "AiAnswerText" Elements.
+  
+  Bei gefundenen Fehlerzeilen wird die Schaltfläche "Vorschlag zur Behebung des Fehler erhalten" angezeigt. Diese ist in einem "Visibility" Element eingebettet, welches über die Variable "isErrorRequest"    zu sehen oder nicht zu sehen ist.
   
 ### Server
   Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
