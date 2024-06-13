@@ -69,16 +69,31 @@
    Das Besondere bei dieser Schaltfläche ist es, das sie in ein "Visibility" Element eingebettet wurde. 
    Das bedeutet das die Schaltfläche basierend auf einem Booleanwert zu sehen ist. Diese Schaltfläche wird unter der Auswahlliste angezeigt.
    
-   Um den Platz auszufüllen, wurden alle Elemente in ein "Expanded" Element eingebettet. Des weiteren haben alle Schaltflächen einen Lila Hintergrund erhalten.
+   Um den leeren Platz auszufüllen und Symmetrie zu schaffen, wurden alle Elemente außer die Auswahlliste in ein "Expanded" Element eingebettet. Des weiteren haben alle Schaltflächen einen Lila Hintergrund 
+   erhalten. Für die Übersichtlichkeit wurden Abstände mithilfe von "SizedBox" zwischen Elemente eingebaut.
    
 ## Logik
 ### Client
   Um mit dem Server zu kommunizieren wurden alle Komponenten des geforkten Projekts beibehalten. Die einzige Änderung war der geänderte Messagetext in der Methode "_askAI".
-  Dort wurde nun statt die Benutzereingabe eine Variable gesetzt, die den konstruierten Prompt enthält. Dieser Prompt wird je nach ausgeführter Funktion dynamisch gesetzt.
+  Dort wurde nun statt die Benutzereingabe eine Variable gesetzt, die den konstruierten Prompt enthält. Dieser Prompt wird je nach ausgeführter Funktion dynamisch erstellt.
 
-  Für die Funktion "Code auf Fehler überprüfen" wurde die Methode "AnalyseCodeError" geschrieben (siehe Abbildung 3), welche über das onPressed Event der Schaltfläche ausgeführt wird.
+  Abbildung 3: Methode "AnalyseCodeError"
   ![image](https://github.com/FinnEhrl/web_entwicklung_BFAX422A/assets/147406212/f1f22669-adb2-4e81-9373-0c550c4bb6db)
-  
+  Für die Funktion "Code auf Fehler überprüfen" wurde die Methode "AnalyseCodeError" geschrieben (siehe Abbildung 3), welche über das onPressed Event der Schaltfläche ausgeführt wird.
+  Zunächst wurde die Variable "isErrorRequest", welche einen Booleanwert enthält, auf den Wert "true" gesetzt. Danach wurde die Variable "_prompt" mit einem speziell für die Fehlerüberprüfung erstellter 
+  Text gefüllt. Dieser enthält sowohl die Anweisung als auch den eingegebenen Programmcode des Benutzers. Nach dem erstellen des Prompts, wird die Methode "_askAI" ausgeführt. 
+  In dieser wird die Anfrage an den Server weitergeleitet und die Antwort in die Variable "response" gespeichert. Danach wird die Methode "_setAiAnswer" ausgeführt.
+  Diese war in dem Projekt schon vorhanden und wurde den Anforderungen entsprechend bearbeitet.
+  In dieser Methode wird in einem "setState" zunächst eine Liste "errorindex" geleert. Diese Liste beinhaltet die Indizies der Codezeilen, die einen Fehler enthalten.
+  Die Antwort der KI wurde zunächst so bearbeitet, das sie keine Whitespaces mehr enthält. Danach wurden die Zeilen der Antwort einzeln aufgeteilt und in die Liste "code" geschrieben.
+  Diese Liste besteht aus Stringwerten. Des weiteren wurde überprüft, ob es sich bei der aktuellen Anfrage um die Fehlerüberprüfung handelt. 
+  Wenn dies zutrifft, wird die Methode "GetLineErrors" ausgeführt. In dieser Methode wurde mittels einer For-Schleife jede Codezeile darauf überprüft, ob diese das Format "// Error" enthält.
+  Für jede gefundene Zeile wird deren Index in die Liste "errorindex" geschrieben. Es wurde eine weitere Überprüfung eingebaut, um sicher zu gehen, das auch wirklich Fehler vorhanden sind.
+  Dies geschieht über eine kleine if-Abfrage, in der überprüft wird, ob die Liste keine Elemente enthält. Sollte diese keine Elemente enthalten, so wird die Variable "isErrorRequest" auf den Wert "false" 
+  gesetzt. Zuletzt wird die Methode "setSpans" ausgeführt. In dieser Methde wird ein Mapping der Liste "code" durchgeführt, um den Zeilen indizes zu geben.
+  Für jede Zeile wird ein Element vom Typ "TextSpan" zurückgegeben, in dem durch eine Überprüfung die Farbe des Textes festgelegt wird.
+  Wenn der Zeilenindex mit einem aus der Liste "errorindex" übereinstimmt, wird der Text Rot gefärbt, ansonsten Schwarz. Diese "TextSpans" werden in der Liste "answerSpans" von "TextSpans" gespeichert.
+  Die Liste "answerSpans" ist der Wert des "AiAnswerText" Elements.
   
 ### Server
   Der Server wurde im Rahmen dieses Projekts nicht angepasst. Er wurde aus dem geforkten Projekt genommen.
