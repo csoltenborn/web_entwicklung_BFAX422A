@@ -13,11 +13,13 @@ Desweiteren habe ich die Technologien OpenAPI für die AI funktion, Flutter für
 ## Klassendiagramm
 ![Klassendiagramm](https://github.com/TimonKy/web_entwicklung_BFAX422A/assets/126243654/8d12616a-77ce-41b5-a76e-263fe5038123)
 
-## Design überlegung
+## Design Überlegung
+![Unbenannt](https://github.com/TimonKy/web_entwicklung_BFAX422A/assets/126243654/7074763c-5898-44e1-8c2f-7b69d8b41bc0)
 
 ## Code
 
 ### Hauptanwendungs-Setup
+
 
 ### Datenbankdienste 
 
