@@ -41,6 +41,7 @@ Mit der toJson-Methode wird ein Todo-Objekt in eine JSON-ähnliche DartMap umgew
 ### Homepage
 Es werden zwei FloatingActionButtons in den Zeilen 69 bis 86 eingefügt.  
 Alle todos, die noch nicht in der allTodoTextsnot enthalten sind, werden in der for Schleife von Zeile 142 bis 146 eingefügt, damit sie später aus der sortListe ausgelesen werden.  
+In der Zeile danach wird überprüft ob die Task gelöscht wurden und wen ja wird diese auch aus der allTodoTextsnot Liste gelöscht.  
 Beim Löschen eines Todo aus der Todo-Liste öffnet sich mit einem langen Klick die sortList-Methode, um diese auch aus der AI-Liste zu löschen (Zeile169 bis 170).  
 In Zeile 182 wird ein verticaler Divider eingefügt um ListTile auf der rechte Seite einzufügen.  
 Dieser ListTile gibt die allTodoTexts Liste mit einer Nummerrierung aus, welches die Todos sind.  
