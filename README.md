@@ -15,6 +15,7 @@ Desweiteren habe ich die Technologien OpenAPI für die AI funktion, Flutter für
 
 ## Design Überlegung
 ![Unbenannt](https://github.com/TimonKy/web_entwicklung_BFAX422A/assets/126243654/7074763c-5898-44e1-8c2f-7b69d8b41bc0)
+Es wurde beschlossen, in der Designüberlebeung eine normale todo-Liste auf der linken Seite und eine AI-Sortierte todo-Liste auf der rechten Seite zu platzieren. 
 
 ## Code
 Im Volgendem Abschnitt wird erklärt was vom vorgegebenen Programm Verändert wurde.  
