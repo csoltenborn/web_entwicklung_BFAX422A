@@ -1,11 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'home_page.dart';
 
 
 
-void main() {
+
+  main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: false);
   var apiClient = ApiClient(basePath: 'http://127.0.0.1:8080');
   var api = ChatApi(apiClient);
   runApp(
@@ -27,7 +36,7 @@ class AiApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Chat Demo Home Page'),
+      home: const HomePage(title: 'Listen App'),
     );
   }
 }
